@@ -1,0 +1,58 @@
+/* Sitenin genel ayarları */
+body {
+  background-color: #e4e3b9; /* Sitenin arka planı hafif gri olsun, göz yormasın */
+  font-family: Arial, sans-serif; /* Daha modern bir düz yazı tipi */
+}
+
+/* Karşılama yazısı biraz daha kalın dursun */
+h1 {
+  color: #1A1A1A;
+}
+
+/* İlan kartlarının kenarları daha yumuşak olsun */
+.card {
+  border: none; /* Kenar çizgisini kaldırdık */
+  border-radius: 12px; /* Köşeleri yuvarlattık */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Çok hafif bir gölge ekledik */
+}
+/* Şeridin dış kutusu (Pencere) */
+.kayan-serit-kutusu {
+  width: 100%;
+  background-color: #F1EFEA; /* Resimdeki o bej/krem rengi arka plan */
+  border-top: 1px solid #D5D0C5; /* Üstteki ince çizgi */
+  border-bottom: 1px solid #D5D0C5; /* Alttaki ince çizgi */
+  padding: 15px 0; /* İçeriden üstten ve alttan boşluk */
+  overflow: hidden; /* Sitenin sağına doğru taşan yazıları GİZLE */
+  white-space: nowrap; /* Yazılar asla alt satıra geçmesin, yan yana gitsin */
+}
+
+/* Kayan yazının kendisi (Tren) */
+.kayan-yazi {
+  display: inline-block;
+  /* Animasyon adı: sola-kaydir, Süresi: 20 saniye, Hızı: sabit (linear), Tekrarı: sonsuz */
+  animation: sola-kaydir 20s linear infinite; 
+}
+
+/* İçindeki yazılar ve aralarındaki boşluklar */
+.kayan-yazi span {
+  margin-right: 50px; /* Her kelime arasına 50 birim boşluk */
+  color: #8C8070; /* Resimdeki tatlı kahverengimsi gri renk */
+  font-size: 14px;
+  font-weight: 600; /* Biraz kalın */
+  letter-spacing: 2px; /* Harfler arası havalı boşluk */
+}
+
+/* İŞTE SİHRİN OLDUĞU YER: Animasyon Matematiği */
+@keyframes sola-kaydir {
+  0% {
+    transform: translateX(0); /* Başlangıçta tam yerinde dur (0) */
+  }
+  100% {
+    transform: translateX(-50%); /* Bittiğinde kendi genişliğinin yarısı kadar (%50) sola kay. (Yazıları 2 kere kopyaladığımız için tam ortada başa sarmış gibi hissettirir) */
+  }
+}
+
+/* Menüdeki logoyu simsiyah yapma numarası */
+.navbar-brand img {
+  filter: brightness(0);
+}
