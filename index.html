@@ -1,663 +1,139 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>İzem Premium | Modern & Ferah Öğrenci Yaşamı</title>
-    <meta name="description" content="Eskişehir'de modern, güvenli ve lüks öğrenci yaşam alanı. Ferah odalar, üst düzey güvenlik ve ayrıcalıklı olanaklarla evinizin konforunu yaşayın.">
-    <meta name="keywords" content="Eskişehir öğrenci apartı, kız yurdu, lüks apart, İzem, Eskişehir barınma, öğrenci yurdu, anadolu üniversitesi apart">
-    <meta name="author" content="İzem Premium">
-    
-    <meta property="og:title" content="İzem Premium | Modern & Ferah Öğrenci Yaşamı">
-    <meta property="og:description" content="Eskişehir'de modern, güvenli ve lüks öğrenci yaşam alanı. Odalarımızı ve olanaklarımızı keşfedin.">
-    <meta property="og:image" content="https://www.izempremium.com/resimler/fotograf-galeri_34.webp">
-    <meta property="og:url" content="https://www.izempremium.com">
-    <meta property="og:type" content="website">
-    
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
+    <meta name="keywords" content="web development, HTML, CSS, JavaScript">
+    <meta name="description" content="This is a sample web page created for demonstration purposes.">
+    <title>My Web Page</title>
+
     <style>
-        /* =========================================================
-           1. TEMEL AYARLAR VE AÇIK RENK PALETİ
-           ========================================================= */
-        :root {
-            --bg-main: #ffffff;
-            --bg-sec: #f8f6f0;
-            --bg-glass: rgba(255, 255, 255, 0.75);
-            --gold: #c5a880;
-            --gold-dark: #a88a60;
-            --text-dark: #1a1a1a;
-            --text-muted: #5a5a5a;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px; 
-        }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
-        a { text-decoration: none; color: inherit; }
-        /* =========================================================
-           2. HEADER & STICKY GLASSMORPHISM NAVBAR
-           ========================================================= */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 20px 5vw;
-            display: flex; justify-content: space-between; align-items: center;
-            background: var(--bg-glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3); z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s ease;
-        }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text-dark); font-weight: 600; letter-spacing: 2px; z-index: 1001; }
-        .logo span { color: var(--gold); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--gold); transition: width 0.3s; }
-        .nav-links a:hover::after { width: 100%; }
-        
-        /* Hamburger Menü (Erişilebilirlik için Button yapıldı) */
-        .menu-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; background: transparent; border: none; padding: 0; }
-        .menu-toggle span { width: 30px; height: 2px; background-color: var(--text-dark); transition: 0.3s; }
-        
-        /* =========================================================
-           3. ANİMASYON SINIFLARI
-           ========================================================= */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-        /* =========================================================
-           4. HERO BÖLÜMÜ
-           ========================================================= */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.3) 100%), 
-                        url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=1920&q=80') center/cover fixed;
-            display: flex; align-items: center; padding: 0 10vw;
-        }
-        .hero-content { max-width: 600px; margin-top: 60px; }
-        .hero-content h3 { color: var(--gold); letter-spacing: 4px; text-transform: uppercase; font-size: 1rem; margin-bottom: 20px; }
-        .hero-content h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 30px; }
-        .hero-btn { display: inline-block; padding: 15px 40px; background: var(--gold); color: #fff; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; border-radius: 30px; transition: all 0.4s ease; box-shadow: 0 10px 20px rgba(197, 168, 128, 0.3); }
-        .hero-btn:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 15px 25px rgba(197, 168, 128, 0.5); }
-        .section-padding { padding: 100px 10vw; }
-        .bg-sec { background-color: var(--bg-sec); }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 3rem; margin-bottom: 15px; }
-        .section-title p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-        /* =========================================================
-           5. OLANAKLAR BÖLÜMÜ
-           ========================================================= */
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            background-color: var(--gold-dark); 
-            color: #fff;
-            padding: 25px 0;
-            display: flex;
-            box-shadow: inset 0 5px 15px rgba(0,0,0,0.05); 
-        }
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            animation: scroll-marquee 30s linear infinite; 
-        }
-        .marquee-track span {
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.5rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            padding-right: 10px;
-            white-space: nowrap;
-        }
-        @keyframes scroll-marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
-        }
-        .marquee-container:hover .marquee-track { animation-play-state: paused; }
-        @media (max-width: 768px) {
-            .marquee-container { padding: 15px 0; }
-            .marquee-track span { font-size: 1.2rem; }
-        }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .feature-card { background-color: #fff; padding: 40px 30px; border-radius: 16px; text-align: center; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); }
-        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(197, 168, 128, 0.15); animation: float 3s ease-in-out infinite; }
-        .feature-icon { display: inline-flex; align-items: center; justify-content: center; width: 60px; height: 60px; margin-bottom: 20px; background-color: var(--bg-sec); border-radius: 50%; color: var(--gold-dark); transition: all 0.4s ease; }
-        .feature-icon svg { width: 28px; height: 28px; transition: transform 0.4s ease; }
-        .feature-card:hover .feature-icon { background-color: var(--gold-dark); color: #fff; }
-        .feature-card:hover .feature-icon svg { transform: scale(1.15); }
-        .feature-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
-        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
-        /* =========================================================
-           6. ODALAR VE GALERİ 
-           ========================================================= */
-        .rooms-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .room-card, .gallery-item { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05); cursor: pointer; }
-        .room-card { height: 450px; }
-        .gallery-item { height: 280px; } 
-        
-        .room-img, .gallery-img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.8s ease, filter 0.8s ease-out; 
-        }
-        .room-card:hover .room-img, .gallery-item:hover .gallery-img { transform: scale(1.08); }
-        
-        .blur-effect {
-            filter: blur(15px);
-            background-color: #e5dfd3;
-        }
-        .room-info { position: absolute; bottom: 20px; left: 20px; right: 20px; padding: 25px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-radius: 12px; transition: all 0.3s ease; }
-        .room-card:hover .room-info { transform: translateY(-5px); background: rgba(255, 255, 255, 0.95); }
-        .room-info h3 { font-size: 1.5rem; margin-bottom: 5px; }
-        .room-info p { color: var(--gold-dark); font-weight: 500; }
-        
-        /* LIGHTBOX CSS */
-        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        .lightbox.active { opacity: 1; visibility: visible; }
-        .lightbox img { 
-            max-width: 90%; 
-            max-height: 90vh; 
-            border-radius: 8px; 
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5); 
-            transform: scale(0.8); 
-            transition: transform 0.3s ease, filter 0.3s ease; 
-            user-select: none; 
-        }
-        .lightbox.active img { transform: scale(1); }
-        
-        .lightbox-close { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 3rem; cursor: pointer; transition: color 0.3s; z-index: 2002; }
-        .lightbox-close:hover { color: var(--gold); }
-        
-        .lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 3rem; font-weight: bold; cursor: pointer; padding: 20px; user-select: none; transition: color 0.3s ease; z-index: 2001; }
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-        .lightbox-prev:hover, .lightbox-next:hover { color: var(--gold); }
-        /* =========================================================
-           7. SSS MODÜLÜ
-           ========================================================= */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        details { background-color: #fff; border-radius: 12px; margin-bottom: 15px; padding: 20px 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.02); cursor: pointer; }
-        summary { font-size: 1.1rem; font-weight: 600; outline: none; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '+'; color: var(--gold); font-size: 1.5rem; transition: 0.3s; }
-        details[open] summary::after { transform: rotate(135deg); }
-        details p { margin-top: 15px; color: var(--text-muted); padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
-        /* =========================================================
-           8. İLETİŞİM & FORM
-           ========================================================= */
-        .contact-modern-section { background-color: #fdfbf7; padding: 100px 5vw; }
-        .contact-modern-container { display: flex; flex-wrap: wrap; gap: 60px; max-width: 1200px; margin: 0 auto; }
-        .contact-info-col { flex: 1; min-width: 300px; }
-        .contact-subtitle { font-size: 0.85rem; letter-spacing: 2px; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 15px; font-weight: 600; }
-        .contact-info-col h2 { font-size: 3.5rem; margin-bottom: 20px; font-family: 'Playfair Display', serif; }
-        .contact-info-col p { font-size: 1.1rem; color: #555; margin-bottom: 40px; max-width: 400px; }
-        .contact-list { list-style: none; margin-bottom: 40px; }
-        .contact-list li { display: flex; align-items: center; margin-bottom: 20px; font-size: 1.05rem; }
-        .contact-list li svg { width: 24px; height: 24px; margin-right: 15px; fill: none; stroke: var(--gold-dark); stroke-width: 1.5; padding: 8px; background: #f4efe6; border-radius: 50%; box-sizing: content-box; }
-        .social-icons { display: flex; gap: 15px; }
-        .social-icons a { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border: 1px solid #e0d8c8; border-radius: 50%; color: #555; transition: all 0.3s ease; }
-        .social-icons a:hover { background-color: var(--gold-dark); color: #fff; border-color: var(--gold-dark); }
-        .social-icons svg { width: 20px; height: 20px; fill: currentColor; }
-        
-        .contact-form-col { flex: 1.2; min-width: 320px; background-color: #f8f5ee; border: 1px solid #e5dfd3; border-radius: 16px; padding: 40px; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-size: 0.95rem; margin-bottom: 8px; font-weight: 500; }
-        .form-control { width: 100%; padding: 15px 20px; background-color: #fff; border: 1px solid #e0d8c8; border-radius: 8px; font-size: 1rem; font-family: inherit; outline: none; transition: 0.3s; }
-        .form-control:focus { border-color: var(--gold-dark); }
-        textarea.form-control { resize: vertical; min-height: 120px; }
-        .form-actions { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
-        .btn-form { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 25px; border-radius: 30px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; flex: 1; min-width: 200px; border: none; }
-        .btn-whatsapp { background-color: #2c2c2c; color: #fff; border: 1px solid #2c2c2c; }
-        .btn-whatsapp:hover { background-color: #1a1a1a; transform: translateY(-2px); }
-        .btn-email { background-color: transparent; color: #2c2c2c; border: 1px solid #d1c8b4; }
-        .btn-email:hover { background-color: #f4efe6; border-color: var(--gold-dark); transform: translateY(-2px); }
-        .form-footer-text { margin-top: 20px; font-size: 0.8rem; color: #888; line-height: 1.5; }
-        /* =========================================================
-           9. HARİTA, FOOTER & YUKARI ÇIK BUTONU
-           ========================================================= */
-        .map-container { width: 100%; height: 450px; filter: grayscale(30%) opacity(0.9); display: block; }
-        footer { background-color: var(--bg-sec); text-align: center; padding: 60px 20px 40px; border-top: 1px solid rgba(0,0,0,0.05); }
-        footer h2 { font-size: 2rem; margin-bottom: 10px; }
-        footer h2 span { color: var(--gold); }
-        
-        .scroll-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--gold-dark); color: #fff; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 1000; display: flex; align-items: center; justify-content: center; }
-        .scroll-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-        .scroll-to-top:hover { background-color: #1a1a1a; transform: translateY(-5px); }
-        /* =========================================================
-           10. MOBİL UYARLAMA
-           ========================================================= */
-        @media (max-width: 900px) {
-            .hero h1 { font-size: 3rem; }
-            .contact-info-col h2 { font-size: 2.8rem; }
-            .section-padding { padding: 70px 5vw; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { position: absolute; top: 70px; left: 0; width: 100%; background: var(--bg-main); flex-direction: column; align-items: center; padding: 20px 0; gap: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transition: all 0.4s ease-in-out; }
-            .nav-links.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-            .menu-toggle { display: flex; }
-            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .menu-toggle.active span:nth-child(2) { opacity: 0; }
-            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            .contact-form-col { padding: 25px; }
-            .form-actions { flex-direction: column; }
-            .lightbox-prev, .lightbox-next { font-size: 2rem; padding: 10px; }
-            .lightbox-prev { left: 10px; }
-            .lightbox-next { right: 10px; }
-        }
+      .divOzellik{
+        width: 100%;
+        height: 100px;
+        background-color: #c6c4ed;
+        text-align: center;
+      }
+
+
+
+
     </style>
 </head>
-<body>
-    <header>
-        <a href="/" aria-label="Ana Sayfa"><img src="/resimler/logo.png" alt="İzem Logo" style="height: 45px; filter: brightness(0);"></a>
-        
-        <button class="menu-toggle" id="mobile-menu" aria-label="Menüyü Aç">
-            <span></span><span></span><span></span>
-        </button>
-        
-        <nav class="nav-links" id="nav-links">
-            <a href="#hakkimizda">Hakkımızda</a>
-            <a href="#olanaklar">Olanaklar</a>
-            <a href="#odalar">Odalar</a>
-            <a href="#galeri">Galeri</a>
-            <a href="#sss">SSS</a> 
-            <a href="#iletisim">İletişim</a>
-        </nav>
-    </header>
-    <section class="hero">
-        <div class="hero-content reveal">
-            <h3>Modern Öğrenci Yaşamı</h3>
-            <h1>Öğrenciliğin En Prestijli Hali<br>İzem.</h1>
-            <a href="#odalar" class="hero-btn">Odaları Keşfet</a>
-        </div>
-    </section>
-    <section id="hakkimizda" class="section-padding bg-sec">
-        <div class="section-title reveal">
-            <h2>Huzur ve Konforun Adresi</h2>
-            <p>Eskişehir'in dinamik yapısına uygun, aydınlık, güvenli ve ilham verici bir yaşam alanı.</p>
-        </div>
-        
-        <div class="about-container reveal" style="display: flex; flex-wrap: wrap; gap: 50px; max-width: 1200px; margin: 0 auto; align-items: center;">
-            <div class="about-text" style="flex: 1; min-width: 300px; font-size: 1.1rem; color: var(--text-muted); line-height: 1.8;">
-                <p>İzem Bayan Apart, merkezi konumu, konforlu odaları, keyifli sosyal olanakları ve sıcacık aile ortamı ile kurumsal ve kaliteli bir hizmet sunmak için çalışmaktadır. Farklı şehirlerden, farklı kültürlerden gelen onlarca kız öğrenciyi bir çatı altında toplayarak, huzurlu bir şekilde konaklayabilecekleri bir alan yaratan İzem Apart, bina özellikleri ile de tüm şartları karşılamaktadır. Apartımızda, 24 saat bulunan fiziki güvenlik personelimiz ve sürekli kayıtta olan kamera sistemimiz, konuklarımızı tüm tehlikelere karşı güvende kılmaktadır.</p>
-            </div>
-            <div class="about-video" style="flex: 1.2; min-width: 300px;">
-                <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; aspect-ratio: 16 / 9;">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/alSt5FRVzcg" title="İzem Premium Tanıtım" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: block; border: none;"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="olanaklar" class="section-padding">
-        <div class="section-title reveal">
-            <h2>Ayrıcalıklı Olanaklar</h2>
-            <p>Eğitim hayatınızı kolaylaştırmak için her detayı düşündük.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>
-                <h3>7/24 Güvenlik</h3>
-                <p>Profesyonel güvenlik personeli ve akıllı kartlı geçiş sistemleri.</p>
-            </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
-                <h3>Kesintisiz Konfor</h3>
-                <p>Sınırsız yüksek hızlı fiber internet, sıcak su ve doğalgaz.</p>
-            </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
-                <h3>Merkezi Konum</h3>
-                <p>Anadolu Üniversitesi ve Espark AVM'ye keyifli bir yürüyüş mesafesi.</p>
-            </div>
-            <div class="feature-card reveal">
-                <span class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span>
-                <h3>Ulaşım Kolaylığı</h3>
-                <p>ESTÜ ve diğer kampüslere giden toplu taşıma noktalarına 1 dakika mesafe.</p>
-            </div>
-        </div>
-    </section>
-    <div class="marquee-container">
-        <div class="marquee-track">
-            <span>KONFORLU ✦ GÜVENİLİR ✦ MODERN ✦ MERKEZİ ✦ FERAH ✦ HİJYENİK ✦ PREMİUM ✦ </span>
-            <span>KONFORLU ✦ GÜVENİLİR ✦ MODERN ✦ MERKEZİ ✦ FERAH ✦ HİJYENİK ✦ PREMİUM ✦ </span>
-            <span>KONFORLU ✦ GÜVENİLİR ✦ MODERN ✦ MERKEZİ ✦ FERAH ✦ HİJYENİK ✦ PREMİUM ✦ </span>
-            <span>KONFORLU ✦ GÜVENİLİR ✦ MODERN ✦ MERKEZİ ✦ FERAH ✦ HİJYENİK ✦ PREMİUM ✦ </span>
-        </div>
-    </div>
-<section id="odalar" class="section-padding bg-sec">
-<div class="section-title reveal">
-<h2>Aydınlık Yaşam Alanları</h2>
-<p>Size özel tasarlanmış, ergonomik ve gün ışığıyla dolu odalarımız.</p>
-</div>
-<div class="rooms-grid">
-<div class="room-card reveal">
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-     data-src="/resimler/e623baf7-2386-4807-a1ea-3d1111392829.webp"
-     data-fallback="/resimler/e623baf7-2386-4807-a1ea-3d1111392829.jpg"
-     alt="Tek Kişilik Premium"
-     class="room-img room-trigger blur-effect"
-     loading="lazy"
-     data-images='["/resimler/e623baf7-2386-4807-a1ea-3d1111392829.webp", "/resimler/fotograf-galeri_32.webp", "/resimler/fotograf-galeri_34.webp", "/resimler/fotograf-galeri_33.webp","/resimler/fotograf-galeri_23.webp"]'>
-<div class="room-info">
-<h3>Tek Kişilik Premium</h3>
-<p>Size Özel Banyo • Çalışma Masası</p>
-</div>
-</div>
-<div class="room-card reveal">
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-     data-src="/resimler/f83ed9f7-e992-48e6-9fa4-c62fe05d4fe9.webp"
-     data-fallback="/resimler/f83ed9f7-e992-48e6-9fa4-c62fe05d4fe9.jpg"
-     alt="Çift Kişilik Konfor"
-     class="room-img room-trigger blur-effect"
-     loading="lazy"
-     data-images='["/resimler/f83ed9f7-e992-48e6-9fa4-c62fe05d4fe9.webp", "/resimler/fotograf-galeri_28.webp", "/resimler/fotograf-galeri_31.webp", "/resimler/fotograf-galeri_30.webp"]'>
-<div class="room-info">
-<h3>Çift Kişilik Konfor</h3>
-<p>Ferah Alan • Geniş Gardırop</p>
-</div>
-</div>
-</div>
-</section>
-<section id="galeri" class="section-padding">
-<div class="section-title reveal">
-<h2>İzem'de Yaşam</h2>
-<p>Görselleri büyütmek için üzerlerine tıklayabilirsiniz.</p>
-</div>
-<div class="gallery-grid reveal">
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_34.webp" data-fallback="/resimler/fotograf-galeri_34.jpg" alt="Galeri 1" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_33.webp" data-fallback="/resimler/fotograf-galeri_33.jpg" alt="Galeri 2" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_31.webp" data-fallback="/resimler/fotograf-galeri_31.jpg" alt="Galeri 3" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_30.webp" data-fallback="/resimler/fotograf-galeri_30.jpg" alt="Galeri 4" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_29.webp" data-fallback="/resimler/fotograf-galeri_29.jpg" alt="Galeri 5" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_32.webp" data-fallback="/resimler/fotograf-galeri_32.jpg" alt="Galeri 6" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_28.webp" data-fallback="/resimler/fotograf-galeri_28.jpg" alt="Galeri 7" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_26.webp" data-fallback="/resimler/fotograf-galeri_26.jpg" alt="Galeri 8" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-<div class="gallery-item"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="/resimler/fotograf-galeri_25.webp" data-fallback="/resimler/fotograf-galeri_25.jpg" alt="Galeri 9" class="gallery-img gallery-trigger blur-effect" loading="lazy"></div>
-</div>
-</section>
-<section id="sss" class="section-padding bg-sec">
-<div class="section-title reveal"><h2>Sıkça Sorulan Sorular</h2></div>
-<div class="faq-container reveal">
-<details><summary>Giriş - çıkış saatleri esnek mi?</summary><p>Öğrencilerimizin güvenliği temel önceliğimizdir. Belirli saat uygulamamız bulunmakla birlikte staj, proje veya özel durumlar için yönetim onayıyla esneklik sağlanmaktadır.</p></details>
-<details><summary>Tüm giderler fiyata dahil mi?</summary><p>Evet; elektrik, su, doğalgaz ve sınırsız yüksek hızlı Wi-Fi konaklama bedeline dahildir. Sürpriz ek maliyetlerle karşılaşmazsınız.</p></details>
-<details><summary>Mutfak ve yemek düzeni nasıl?</summary><p>Kendi damak tadınıza uygun yemekler hazırlayabileceğiniz, son teknoloji ankastre ürünlerle donatılmış ferah ortak mutfak alanlarımız mevcuttur.</p></details>
-</div>
-</section>
-<section id="iletisim" class="contact-modern-section">
-<div class="contact-modern-container reveal">
-<div class="contact-info-col">
-<div class="contact-subtitle">07 · İLETİŞİM</div>
-<h2>Bize ulaşın</h2>
-<p>Detaylı bilgi için bizimle iletişime geçin.</p>
-<ul class="contact-list">
-<li><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg><a href="https://wa.me/905464882626" target="_blank" style="margin-left: 5px;">WhatsApp · 0546 488 26 26</a></li>
-<li><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><a href="tel:+905464882626" style="margin-left: 5px;">0546 488 26 26</a></li>
-<li><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><a href="tel:+902227000061" style="margin-left: 5px;">0222 700 00 61</a></li>
-<li><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><a href="mailto:izembayanapart@gmail.com" style="margin-left: 5px;">izembayanapart@gmail.com</a></li>
-</ul>
-<div class="social-icons">
-<a href="https://wa.me/905464882626" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
-<a href="https://instagram.com/izembayanapart" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-<a href="https://facebook.com/izembayanapart" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
-</div>
-</div>
-<div class="contact-form-col">
-<form id="apartForm" action="#" method="POST">
-<div class="form-group">
-<label for="adSoyad">Ad Soyad *</label>
-<input type="text" id="adSoyad" name="Ad_Soyad" class="form-control" placeholder="Adınız ve soyadınız" required>
-</div>
-<div class="form-group">
-<label for="telefon">Telefon *</label>
-<input type="tel" id="telefon" name="Telefon" class="form-control" placeholder="05XX XXX XX XX" required>
-</div>
-<div class="form-group">
-<label for="odaTipi">Oda Tipi</label>
-<select id="odaTipi" name="Oda_Tipi" class="form-control">
-<option value="Fark etmez">Fark etmez</option>
-<option value="Tek Kişilik Oda">Tek Kişilik Oda</option>
-<option value="Çift Kişilik Oda">Çift Kişilik Oda</option>
-<option value="Suit Oda">Suit Oda</option>
-</select>
-</div>
-<div class="form-group">
-<label for="mesaj">Mesajınız</label>
-<textarea id="mesaj" name="Mesaj" class="form-control" placeholder="İletmek istedikleriniz..."></textarea>
-</div>
-<div class="form-actions">
-<button type="button" class="btn-form btn-whatsapp" onclick="gonderWhatsApp()">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg> WhatsApp
-</button>
-<button type="submit" class="btn-form btn-email">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> E-posta Gönder
-</button>
-</div>
-<div class="form-footer-text">
-Gerekli alanlar (*) ile belirtilmiştir. Formspree/EmailJS ile sisteme bağlandığında doğrudan iletilir.
-</div>
-</form>
-</div>
-</div>
-</section>
-<iframe class="map-container reveal" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.75!2d30.5055!3d39.7885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDQ3JzE4LjYiTiAzMMKwMzAnMTkuOCJF!5e0!3m2!1str!2str!4v1680000000000!5m2!1str!2str" style="border:0;" allowfullscreen="" loading="lazy" title="İzem Premium Eskişehir Konumu"></iframe>
-<footer>
-<h2>İZEM<span>.</span> Premium</h2>
-<p>Yenibağlar Mah. Çayır Sokak No:34, Tepebaşı / Eskişehir</p>
-<p style="margin-top: 10px;"><a href="tel:+905464882626" style="color: var(--gold-dark); font-weight: 600; font-size: 1.1rem;">+90 546 488 26 26</a></p>
-</footer>
-<div id="lightbox" class="lightbox">
-<span class="lightbox-close">×</span>
-<span class="lightbox-prev"> ❮ </span>
-<img id="lightbox-img" src="" alt="Galeri Büyük Görsel">
-<span class="lightbox-next"> ❯ </span>
-</div>
-<button id="scrollToTop" class="scroll-to-top" aria-label="Yukarı Çık">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polyline points="18 15 12 9 6 15"></polyline></svg>
-</button>
-<script>
-// 1. Hamburger Menü
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.getElementById('nav-links');
-mobileMenu.addEventListener('click', () => { mobileMenu.classList.toggle('active'); navLinks.classList.toggle('active'); });
-document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.remove('active'); navLinks.classList.remove('active'); }); });
 
-// 2. Gelişmiş Lightbox
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.querySelector('.lightbox-close');
-const lightboxPrev = document.querySelector('.lightbox-prev');
-const lightboxNext = document.querySelector('.lightbox-next');
-let currentImages = []; 
-let currentIndex = 0;
+<body> 
+    <!--this is a comment-->
+    <h1>Merhaba, bu benim ilk web sayfam!</h1>
+    <p>Sayfamın ilk paragrafını buraya yazıyorum.</p>
+     <!--
+    1.r
+     2.br
+     3.strong
+     4.b
+     5.i
+     6.mark
+     7.center resim ve yazı ortalanır.
+     8.a link vermek için kullanılır.
+     9. ol sıralı ul sırasız liste
+     10. table, tr, td, th rowspan-colspan
+     11.inline, block mantığı
+     12. div etiketi-->
+
+     <h2>HTML Öğeleri</h2>
+     <hr/> <!-- kapatsak da olur kapatmasak da, çizgi oluşturur-->
+     <br/> <!-- satır boşluk oluşturur-->
+     <strong>Bu metin kalın olacak.</strong>
+     <b>Bu metin kalın olacak.</b>
+     <i>Bu metin italik olacak.</i>
+     <mark>Bu metin vurgulanacak.</mark>
+
+     <center>
+        <img src="/resimler/Ataturkun-Ozellikleri-ve-Stili-Ataturkun-Sevdigi-Aksesuarlar.jpg" alt="Atatürk" width="300" height="200">
+        <br/>
+        <h2>Atatürk'ün resmi</h2>
+
+        <p>Mustafa Kemal Atatürk, Türkiye Cumhuriyeti'nin kurucusu ve ilk Cumhurbaşkanıdır. 1881 yılında Selanik'te doğmuş ve 10 Kasım 1938'de İstanbul'da vefat etmiştir. Atatürk, askeri ve siyasi lider olarak Türk milletine büyük katkılarda bulunmuş ve modern Türkiye'nin temellerini atmıştır.</p>
+         kanka tıkla <a href="https://tr.wikipedia.org/wiki/Mustafa_Kemal_Atat%C3%BCrk" target="_blank">Daha fazla bilgi için tıklayın</a>
+        <a href="https://www.youtube.com/@mustafakemalataturk" target="_blank">
+        <img src="/resimler/youtube_icon.jpg" alt="YouTube" width="30" height="30">
+
+        <a/>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul>
+        <ol type="1">   
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ol>       
+    </center>
+
+    <table border="1">
+        <tr>
+          <th colspan="3">Kişisel Bilgiler</th>
+        </tr>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Yaş</th>
+        </tr>
+        <tr>
+            <td>Ahmet</td>
+            <td>Yılmaz</td>
+            <td>25</td> 
+        </tr>
+        <tr>
+            <td>Ayşe</td>
+            <td>Demir</td>
+            <td>30</td>
+        </tr>
+
+    </table>
+
+    <table border ="1">
+        <th colspan="3">Product</th>
+        <tr>
+            <th>No</th>
+            <th>P.Name</th>
+            <th>P.Count</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Pen</td>
+            <td rowspan="3">50</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Book</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Dust</td>  
+            
+        </tr>   
+
+    </table>
 
 
-function loadLightboxImage(index) {
-    if (!currentImages || currentImages.length === 0) return;
-    currentIndex = index;
+    <p> Sema </p>
+    <h2>İletişim Bilgileri</h2>
+    <span>Telif hakları © 2026 Sema. Tüm hakları saklıdır.</span>
 
-    lightboxImg.classList.add('blur-effect');
+    <div class = "divOzellik"> 
+        <h2> Hoş Geldiniz </h2> </div>
 
-    lightboxImg.onload = function() {
-        lightboxImg.classList.remove('blur-effect');
-    };
 
-    lightboxImg.src = currentImages[currentIndex];
+    
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" width="560" height="315" frameborder="0" allowfullscreen></iframe>
 
-    const displayStyle = currentImages.length > 1 ? 'block' : 'none';
-    lightboxPrev.style.display = displayStyle;
-    lightboxNext.style.display = displayStyle;
-}
-
-function openLightbox(index) {
-    lightbox.classList.add('active');
-    loadLightboxImage(index);
-}
-
-const roomTriggers = document.querySelectorAll('.room-trigger');
-roomTriggers.forEach(img => {
-    img.addEventListener('click', function(e) {
-        e.preventDefault();
-        const jsonString = this.getAttribute('data-images');
-        if (jsonString) {
-            try {
-                currentImages = JSON.parse(jsonString); 
-                if (Array.isArray(currentImages) && currentImages.length > 0) openLightbox(0); 
-            } catch (error) { console.error(error); }
-        }
-    });
-});
-
-const galleryTriggers = document.querySelectorAll('.gallery-trigger');
-galleryTriggers.forEach((img, index) => {
-    img.addEventListener('click', function(e) {
-        e.preventDefault();
-        currentImages = Array.from(galleryTriggers).map(gImg => gImg.getAttribute('data-src') || gImg.src); 
-        openLightbox(index); 
-    });
-});
-
-function nextImage() {
-    if (!currentImages || currentImages.length <= 1) return;
-    loadLightboxImage((currentIndex + 1) % currentImages.length);
-}
-
-function prevImage() {
-    if (!currentImages || currentImages.length <= 1) return;
-    loadLightboxImage((currentIndex - 1 + currentImages.length) % currentImages.length);
-}
-
-lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
-lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
-lightboxClose.addEventListener('click', () => { lightbox.classList.remove('active'); });
-lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
-document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('active')) return;
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') prevImage();
-    if (e.key === 'Escape') lightbox.classList.remove('active');
-});
-
-// Mobil Cihazlar İçin Kaydırma (Swipe) Özelliği
-let touchStartX = 0;
-let touchEndX = 0;
-
-lightbox.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-lightbox.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    // Parmağı 50 pikselden fazla sağa veya sola kaydırırsa tetikle
-    if (touchEndX < touchStartX - 50) nextImage(); // Sola kaydırma
-    if (touchEndX > touchStartX + 50) prevImage(); // Sağa kaydırma
-});
-
-// 3. Yukarı Çık Butonu
-const scrollToTopBtn = document.getElementById('scrollToTop');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 500) scrollToTopBtn.classList.add('show');
-    else scrollToTopBtn.classList.remove('show');
-});
-scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-
-// 4. Form İşlemleri
-function formVerileriniAl() {
-    return {
-        ad: document.getElementById('adSoyad').value,
-        tel: document.getElementById('telefon').value,
-        oda: document.getElementById('odaTipi').value,
-        msj: document.getElementById('mesaj').value
-    };
-}
-function gonderWhatsApp() {
-    const form = document.getElementById('apartForm');
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    const veri = formVerileriniAl();
-    const mesajMetni = `Merhaba, İzem Apart web sitesinden ulaşıyorum.%0A%0A*Ad Soyad:* ${veri.ad}%0A*Telefon:* ${veri.tel}%0A*İlgilenilen Oda:* ${veri.oda}%0A*Mesaj:* ${veri.msj}`;
-    window.open(`https://wa.me/905464882626?text=${mesajMetni}`, '_blank');
-}
-const apartForm = document.getElementById('apartForm');
-apartForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = apartForm.querySelector('.btn-email');
-    const originalHTML = btn.innerHTML;
-    btn.innerHTML = 'Gönderiliyor...';
-    btn.disabled = true;
-    setTimeout(() => {
-        alert("Mesajınız sistem üzerinden başarıyla simüle edildi! Sitenizi canlıya alırken formspree.io gibi bir sistemle action linkinizi güncelleyebilirsiniz.");
-        apartForm.reset();
-        btn.innerHTML = originalHTML;
-        btn.disabled = false;
-    }, 1200);
-});
-
-// 5. Scroll Animasyonları 
-document.addEventListener('DOMContentLoaded', () => {
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-    reveals.forEach(reveal => revealObserver.observe(reveal));
-});
-
-// 6. PROFESYONEL LAZY LOAD VE BLUR EFEKTİ
-document.addEventListener("DOMContentLoaded", function() {
-    const lazyImages = document.querySelectorAll('.blur-effect');
-
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                const webpSrc = img.getAttribute('data-src');
-                const fallbackSrc = img.getAttribute('data-fallback');
-                
-                const tempImg = new Image();
-
-                tempImg.onload = function() {
-                    img.onload = function() {
-                        img.classList.remove('blur-effect');
-                    };
-                    img.src = webpSrc;
-                };
-
-                tempImg.onerror = function() {
-                    img.onload = function() { img.classList.remove('blur-effect'); };
-                    img.src = fallbackSrc;
-                };
-
-                tempImg.src = webpSrc;
-                
-                observer.unobserve(img);
-            }
-        });
-    }, { rootMargin: "100px 0px" }); 
-
-    lazyImages.forEach(img => imageObserver.observe(img));
-});
-</script>
 </body>
+
+
+
+
+
+
 </html>
