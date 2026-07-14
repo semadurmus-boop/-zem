@@ -132,11 +132,32 @@ background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,25
             100% { transform: translateX(-50%); } 
         }
         .marquee-container:hover .marquee-track { animation-play-state: paused; }
-        @media (max-width: 768px) {
-            
-            .marquee-container { padding: 15px 0; }
-            .marquee-track span { font-size: 1.2rem; }
-        }
+       @media (max-width: 768px) {
+    /* 1. Kayan yazının (Marquee) mobil ayarı */
+    .marquee-container { padding: 15px 0; }
+    .marquee-track span { font-size: 1.2rem; }
+    
+    /* 2. Galeri yatay kaydırma ayarı (GÜÇLENDİRİLMİŞ) */
+    .gallery-grid {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 15px !important;
+        padding-bottom: 10px !important;
+        scrollbar-width: none !important;
+    }
+    
+    .gallery-grid::-webkit-scrollbar {
+        display: none !important; 
+    }
+    
+    .gallery-item {
+        flex: 0 0 85% !important; 
+        min-width: 85% !important; /* Ezilmemesi için ekstra kalkan */
+        scroll-snap-align: center !important;
+    }
+}
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .feature-card { background-color: #fff; padding: 40px 30px; border-radius: 16px; text-align: center; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); }
         .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(197, 168, 128, 0.15); animation: float 3s ease-in-out infinite; }
@@ -149,10 +170,46 @@ background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,25
         /* =========================================================
            6. ODALAR VE GALERİ 
            ========================================================= */
-        .rooms-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .room-card, .gallery-item { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05); cursor: pointer; }
-        .room-card { height: 450px; }
-        .gallery-item { height: 280px; } 
+      /* 1. Odalar eski düzende kalsın (Izgara sistemi) */
+.rooms-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* 2. Galeri tüm cihazlarda yatay kaydırmalı olsun */
+.gallery-grid { 
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding-bottom: 20px; 
+}
+
+/* 3. Ortak kart özellikleri (Gölgeler, kenarlıklar vs.) */
+.room-card, .gallery-item { 
+    position: relative; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05); 
+    cursor: pointer; 
+}
+
+.room-card { 
+    height: 450px; 
+}
+
+/* 4. Galeri resimlerinin genişliği (Masaüstü için ideal boyut) */
+.gallery-item { 
+    height: 280px; 
+    flex: 0 0 350px; /* Her bir resim masaüstünde 350px yer kaplar */
+    scroll-snap-align: center;
+}
         
         .room-img, .gallery-img { 
             width: 100%; 
