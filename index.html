@@ -532,9 +532,9 @@ background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,25
           <input type="text" id="adSoyad" name="Ad_Soyad" class="form-control" placeholder="Adınız ve soyadınız" required autocomplete="name">
         </div>
         
-        <div class="form-group">
+       <div class="form-group">
           <label for="telefon">Telefon</label>
-          <input type="tel" id="telefon" name="Telefon" class="form-control" placeholder="05XX XXX XX XX" pattern="05\d{2} \d{3} \d{2} \d{2}" autocomplete="tel">
+          <input type="tel" id="telefon" name="Telefon" class="form-control" placeholder="05XX... veya +44..." autocomplete="tel">
         </div>
         
         <div class="form-group">
@@ -774,20 +774,40 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 // 1. Telefon Alanına Sadece Rakam ve Boşluk Girilmesini Sağlama
+// 1. Telefon Alanına Rakam, Boşluk ve '+' Girilmesini Sağlama
 document.getElementById('telefon').addEventListener('input', function (e) {
-  // Rakam (0-9) ve boşluk dışındaki tüm karakterleri anında siler
-  this.value = this.value.replace(/[^0-9 ]/g, '');
+  // Sadece rakam, boşluk ve + işaretine izin verir
+  this.value = this.value.replace(/[^0-9 \+]/g, '');
 });
 
 // 2. Boşluk Kontrolü
+// 1. Telefon Alanına Rakam, Boşluk ve '+' Girilmesini Sağlama
+document.getElementById('telefon').addEventListener('input', function (e) {
+  this.value = this.value.replace(/[^0-9 \+]/g, '');
+});
+
+// 2. Boşluk ve Esnek Telefon Kontrolü
 function alanlariKontrolEt() {
   var adSoyad = document.getElementById('adSoyad').value.trim();
+  var telefon = document.getElementById('telefon').value.replace(/\s/g, ''); 
+
   if (adSoyad === '') {
     alert('Lütfen Ad Soyad alanını doldurunuz.');
     return false;
   }
+
+  // Telefon numarası en az 10 karakter olmalı (Yurt dışı ve yurt içi genel geçer kuralı)
+  if (telefon === '' || telefon.length < 10) {
+    alert('Lütfen geçerli bir telefon numarası giriniz (Örn: 0546... veya +44...).');
+    return false;
+  }
+
   return true;
 }
+
+// 3. E-Posta Butonu Tıklanırsa Çalışacak Kısım
+document.getElementById('apartForm').addEventListener('submit', function(event) {
+// ... kod böyle devam ediyor
 
 // 3. E-Posta Butonu Tıklanırsa Çalışacak Kısım
 document.getElementById('apartForm').addEventListener('submit', function(event) {
