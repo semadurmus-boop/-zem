@@ -289,53 +289,26 @@ background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,25
         .btn-email { background-color: transparent; color: #2c2c2c; border: 1px solid #d1c8b4; }
         .btn-email:hover { background-color: #f4efe6; border-color: var(--gold-dark); transform: translateY(-2px); }
         .form-footer-text { margin-top: 20px; font-size: 0.8rem; color: #888; line-height: 1.5; }
-        <!-- HARİTA ÜSTÜ MESAFE KARTI -->
-<section id="konum" class="konum-section">
-  <div class="konum-container reveal">
-    
-    <div class="konum-text">
-      <h2>Şehrin tam merkezinde</h2>
-      <p>İzem Bayan Apart, Eskişehir Tepebaşı'nda yer alır. Anadolu Üniversitesi, Espark AVM ve çarşı merkezine 5-10 dakikalık yürüme mesafesindeyiz; Eskişehir Teknik Üniversitesi ve Osmangazi Üniversitesi'ne giden otobüs, dolmuş ve tramvay duraklarına da çok yakınız.</p>
-    </div>
-
-    <div class="konum-card">
-      <div class="konum-card-title">İzem'den Yürüme Mesafeleri</div>
-      <ul class="konum-list">
-        <li>
-          <div class="konum-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M14.12 9.88L12 12l-2.12-2.12M12 12v5"/><path d="M12 17l-2 4M12 17l2 4M8 6h8l-2.12 3.88"/></svg>
-          </div>
-          <div class="konum-name">Anadolu Üniversitesi</div>
-          <div class="konum-badge">5-10 dk yürüme</div>
-        </li>
-        <li>
-          <div class="konum-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M14.12 9.88L12 12l-2.12-2.12M12 12v5"/><path d="M12 17l-2 4M12 17l2 4M8 6h8l-2.12 3.88"/></svg>
-          </div>
-          <div class="konum-name">Espark AVM</div>
-          <div class="konum-badge">5-10 dk yürüme</div>
-        </li>
-        <li>
-          <div class="konum-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M14.12 9.88L12 12l-2.12-2.12M12 12v5"/><path d="M12 17l-2 4M12 17l2 4M8 6h8l-2.12 3.88"/></svg>
-          </div>
-          <div class="konum-name">Çarşı merkezi</div>
-          <div class="konum-badge">5-10 dk yürüme</div>
-        </li>
-        <li>
-          <div class="konum-icon">
-            <svg viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 12 10s-6.7.6-8.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"></path><path d="M14 17h-4"></path><path d="M6 17v4h2v-4"></path><path d="M16 17v4h2v-4"></path><rect x="4" y="3" width="16" height="7" rx="2"></rect><circle cx="7.5" cy="14.5" r="1.5"></circle><circle cx="16.5" cy="14.5" r="1.5"></circle></svg>
-          </div>
-          <div class="konum-name">ESTÜ ve Osmangazi Üni.</div>
-          <div class="konum-badge highlight">Toplu taşıma ile yakın</div>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-<!-- İFRAME HARİTA BURADAN DEVAM EDİYOR -->
-<iframe class="map-container reveal" src="...">...
+        /* =========================================================
+   11. KONUM VE MESAFE KARTI (HARİTA ÜSTÜ)
+   ========================================================= */
+.konum-section { background-color: var(--bg-sec); padding: 80px 5vw; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.konum-container { display: flex; flex-wrap: wrap; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: center; }
+.konum-text { flex: 1; min-width: 300px; }
+.konum-text h2 { font-size: 3rem; margin-bottom: 25px; font-family: 'Playfair Display', serif; color: var(--text-dark); line-height: 1.1; }
+.konum-text p { font-size: 1.1rem; color: #555; line-height: 1.8; max-width: 500px; }
+.konum-card { flex: 1; min-width: 320px; background: #fff; border-radius: 20px; padding: 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.02); }
+.konum-card-title { font-size: 0.85rem; letter-spacing: 2px; color: var(--gold-dark); text-transform: uppercase; margin-bottom: 30px; font-weight: 600; }
+.konum-list { list-style: none; position: relative; }
+.konum-list::before { content: ''; position: absolute; left: 23px; top: 20px; bottom: 20px; width: 2px; border-left: 2px dashed #e0d8c8; z-index: 1; }
+.konum-list li { display: flex; align-items: center; margin-bottom: 25px; position: relative; z-index: 2; }
+.konum-list li:last-child { margin-bottom: 0; }
+.konum-icon { width: 48px; height: 48px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; border: 2px solid #e0d8c8; color: var(--gold-dark); }
+.konum-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; }
+.konum-name { flex: 1; font-weight: 500; font-size: 1.05rem; color: var(--text-dark); }
+.konum-badge { background: #f4efe6; color: #555; font-size: 0.85rem; padding: 6px 15px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+.konum-badge.highlight { background: #e0d8c8; color: var(--text-dark); }
+@media (max-width: 900px) { .konum-text h2 { font-size: 2.5rem; } }
         /* =========================================================
            9. HARİTA, FOOTER & YUKARI ÇIK BUTONU
            ========================================================= */
@@ -609,6 +582,45 @@ background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,25
     </div>
   </div> <!-- contact-modern-container burada düzgünce kapandı -->
 </section> <!-- iletişim section'ı burada düzgünce kapandı -->
+    </form>
+  </div> <!-- İletişim Form Sütunu Kapanışı -->
+</div> <!-- İletişim Container Kapanışı -->
+</section> <!-- İletişim Section Kapanışı -->
+
+<!-- HARİTA ÜSTÜ MESAFE KARTI -->
+<section id="konum" class="konum-section">
+<div class="konum-container reveal">
+  <div class="konum-text">
+    <h2>Şehrin tam merkezinde</h2>
+    <p>İzem Bayan Apart, Eskişehir Tepebaşı'nda yer alır. Anadolu Üniversitesi, Espark AVM ve çarşı merkezine 5-10 dakikalık yürüme mesafesindeyiz; Eskişehir Teknik Üniversitesi ve Osmangazi Üniversitesi'ne giden otobüs, dolmuş ve tramvay duraklarına da çok yakınız.</p>
+  </div>
+  <div class="konum-card">
+    <div class="konum-card-title">İzem'den Yürüme Mesafeleri</div>
+    <ul class="konum-list">
+      <li>
+        <div class="konum-icon"><svg viewBox="0 0 24 24"><path d="M12 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M14.12 9.88L12 12l-2.12-2.12M12 12v5"/><path d="M12 17l-2 4M12 17l2 4M8 6h8l-2.12 3.88"/></svg></div>
+        <div class="konum-name">Anadolu Üniversitesi</div>
+        <div class="konum-badge">5-10 dk yürüme</div>
+      </li>
+      <li>
+        <div class="konum-icon"><svg viewBox="0 0 24 24"><path d="M12 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M14.12 9.88L12 12l-2.12-2.12M12 12v5"/><path d="M12 17l-2 4M12 17l2 4M8 6h8l-2.12 3.88"/></svg></div>
+        <div class="konum-name">Espark AVM</div>
+        <div class="konum-badge">5-10 dk yürüme</div>
+      </li>
+      <li>
+        <div class="konum-icon"><svg viewBox="0 0 24 24"><path d="M12 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M14.12 9.88L12 12l-2.12-2.12M12 12v5"/><path d="M12 17l-2 4M12 17l2 4M8 6h8l-2.12 3.88"/></svg></div>
+        <div class="konum-name">Çarşı merkezi</div>
+        <div class="konum-badge">5-10 dk yürüme</div>
+      </li>
+      <li>
+        <div class="konum-icon"><svg viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 12 10s-6.7.6-8.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"></path><path d="M14 17h-4"></path><path d="M6 17v4h2v-4"></path><path d="M16 17v4h2v-4"></path><rect x="4" y="3" width="16" height="7" rx="2"></rect><circle cx="7.5" cy="14.5" r="1.5"></circle><circle cx="16.5" cy="14.5" r="1.5"></circle></svg></div>
+        <div class="konum-name">ESTÜ ve Osmangazi Üni.</div>
+        <div class="konum-badge highlight">Toplu taşıma ile yakın</div>
+      </li>
+    </ul>
+  </div>
+</div>
+</section>
 
 <iframe class="map-container reveal" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6131.888944805341!2d30.502111593351927!3d39.785801496650535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cc15e6e7d150db%3A0x3e748330d84637d4!2s%C4%B0zem%20Bayan%20Apart!5e0!3m2!1str!2str!4v1783683465955!5m2!1str!2str" style="border:0;" allowfullscreen="" loading="lazy" title="İzem Premium Eskişehir Konumu"></iframe>
 <footer>
