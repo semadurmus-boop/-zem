@@ -691,29 +691,65 @@ window.addEventListener('scroll', () => {
 });
 scrollToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-// 4. Form İşlemleri
-function formVerileriniAl() {
-    return {
-        ad: document.getElementById('adSoyad').value,
-        tel: document.getElementById('telefon').value,
-        oda: document.getElementById('odaTipi').value,
-        msj: document.getElementById('mesaj').value
-    };
+// 4. FORM İŞLEMLERİ VE KONTROLLER (TÜMÜ BİRLEŞTİRİLDİ)
+
+// Telefon alanına sadece rakam, boşluk ve + girilmesini sağlama
+document.getElementById('telefon').addEventListener('input', function (e) {
+    this.value = this.value.replace(/[^0-9 \+]/g, '');
+});
+
+// Boşluk ve Telefon Uzunluk Kontrolü
+function alanlariKontrolEt() {
+    const adSoyad = document.getElementById('adSoyad').value.trim();
+    const telefon = document.getElementById('telefon').value.replace(/\s/g, ''); 
+
+    if (adSoyad === '') {
+        alert('Lütfen Ad Soyad alanını doldurunuz.');
+        return false;
+    }
+
+    // Telefon numarası en az 10 karakter olmalı
+    if (telefon === '' || telefon.length < 10) {
+        alert('Lütfen geçerli bir telefon numarası giriniz (Örn: +90 546...).');
+        return false;
+    }
+
+    return true;
 }
+
+// WhatsApp Butonu İşlemi
 function gonderWhatsApp() {
-    const form = document.getElementById('apartForm');
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    const veri = formVerileriniAl();
-    const mesajMetni = `Merhaba, İzem Apart web sitesinden ulaşıyorum.%0A%0A*Ad Soyad:* ${veri.ad}%0A*Telefon:* ${veri.tel}%0A*İlgilenilen Oda:* ${veri.oda}%0A*Mesaj:* ${veri.msj}`;
-    window.open(`https://wa.me/905464882626?text=${mesajMetni}`, '_blank');
+    // Form hatalıysa işlemi burada durdurur, WhatsApp açılmaz!
+    if (!alanlariKontrolEt()) return; 
+    
+    const adSoyad = document.getElementById('adSoyad').value.trim();
+    const telefon = document.getElementById('telefon').value.trim();
+    const odaTipi = document.getElementById('odaTipi').value;
+    const mesaj = document.getElementById('mesaj').value.trim();
+    
+    let wpMesaji = "Merhaba İzem Premium, apartınızla ilgileniyorum.\n\n" +
+                   "👤 Ad Soyad: " + adSoyad + "\n" +
+                   "📞 Telefon: " + telefon + "\n" +
+                   "🛏️ İlgilendiği Oda: " + odaTipi + "\n";
+                   
+    if (mesaj !== '') wpMesaji += "💬 Mesaj: " + mesaj;
+    
+    window.open("https://wa.me/905464882626?text=" + encodeURIComponent(wpMesaji), '_blank');
 }
+
+// E-Posta Gönder Butonu (Form Submit) İşlemi
 const apartForm = document.getElementById('apartForm');
 apartForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+    e.preventDefault(); 
+    
+    // Form hatalıysa simülasyonu durdurur
+    if (!alanlariKontrolEt()) return; 
+    
     const btn = apartForm.querySelector('.btn-email');
     const originalHTML = btn.innerHTML;
     btn.innerHTML = 'Gönderiliyor...';
     btn.disabled = true;
+    
     setTimeout(() => {
         alert("Mesajınız sistem üzerinden başarıyla simüle edildi! Sitenizi canlıya alırken formspree.io gibi bir sistemle action linkinizi güncelleyebilirsiniz.");
         apartForm.reset();
@@ -739,7 +775,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // 6. PROFESYONEL LAZY LOAD VE BLUR EFEKTİ
 document.addEventListener("DOMContentLoaded", function() {
     const lazyImages = document.querySelectorAll('.blur-effect');
-
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -748,99 +783,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 const fallbackSrc = img.getAttribute('data-fallback');
                 
                 const tempImg = new Image();
-
                 tempImg.onload = function() {
-                    img.onload = function() {
-                        img.classList.remove('blur-effect');
-                    };
+                    img.onload = function() { img.classList.remove('blur-effect'); };
                     img.src = webpSrc;
                 };
-
                 tempImg.onerror = function() {
                     img.onload = function() { img.classList.remove('blur-effect'); };
                     img.src = fallbackSrc;
                 };
-
                 tempImg.src = webpSrc;
-                
                 observer.unobserve(img);
             }
         });
     }, { rootMargin: "100px 0px" }); 
-
     lazyImages.forEach(img => imageObserver.observe(img));
 });
-</script>
-
-<script>
-// 1. Telefon Alanına Sadece Rakam ve Boşluk Girilmesini Sağlama
-// 1. Telefon Alanına Rakam, Boşluk ve '+' Girilmesini Sağlama
-document.getElementById('telefon').addEventListener('input', function (e) {
-  // Sadece rakam, boşluk ve + işaretine izin verir
-  this.value = this.value.replace(/[^0-9 \+]/g, '');
-});
-
-// 2. Boşluk Kontrolü
-// 1. Telefon Alanına Rakam, Boşluk ve '+' Girilmesini Sağlama
-document.getElementById('telefon').addEventListener('input', function (e) {
-  this.value = this.value.replace(/[^0-9 \+]/g, '');
-});
-
-// 2. Boşluk ve Esnek Telefon Kontrolü
-function alanlariKontrolEt() {
-  var adSoyad = document.getElementById('adSoyad').value.trim();
-  var telefon = document.getElementById('telefon').value.replace(/\s/g, ''); 
-
-  if (adSoyad === '') {
-    alert('Lütfen Ad Soyad alanını doldurunuz.');
-    return false;
-  }
-
-  // Telefon numarası en az 10 karakter olmalı (Yurt dışı ve yurt içi genel geçer kuralı)
-  if (telefon === '' || telefon.length < 10) {
-    alert('Lütfen geçerli bir telefon numarası giriniz (Örn: 0546... veya +44...).');
-    return false;
-  }
-
-  return true;
-}
-
-// 3. E-Posta Butonu Tıklanırsa Çalışacak Kısım
-document.getElementById('apartForm').addEventListener('submit', function(event) {
-// ... kod böyle devam ediyor
-
-// 3. E-Posta Butonu Tıklanırsa Çalışacak Kısım
-document.getElementById('apartForm').addEventListener('submit', function(event) {
-  if (!alanlariKontrolEt()) {
-    event.preventDefault();
-  }
-});
-
-// 4. WhatsApp Butonu Tıklanırsa Çalışacak Kısım
-function gonderWhatsApp() {
-  if (alanlariKontrolEt()) {
-    var adSoyad = document.getElementById('adSoyad').value.trim();
-    var telefon = document.getElementById('telefon').value.trim();
-    var odaTipi = document.getElementById('odaTipi').value;
-    var mesaj = document.getElementById('mesaj').value.trim();
-
-    var wpMesaji = "Merhaba İzem Premium, apartınızla ilgileniyorum.\n\n";
-    wpMesaji += "👤 Ad Soyad: " + adSoyad + "\n";
-    
-    if (telefon !== '') {
-      wpMesaji += "📞 Telefon: " + telefon + "\n";
-    }
-    
-    wpMesaji += "🛏️ İlgilendiği Oda: " + odaTipi + "\n";
-    
-    if (mesaj !== '') {
-      wpMesaji += "💬 Mesaj: " + mesaj;
-    }
-
-    var wpLink = "https://wa.me/905464882626?text=" + encodeURIComponent(wpMesaji);
-    window.open(wpLink, '_blank');
-  }
-}
 </script>
 </body>
 </html>
