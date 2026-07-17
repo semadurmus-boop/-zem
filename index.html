@@ -300,9 +300,26 @@ background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,25
         .scroll-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--gold-dark); color: #fff; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 1000; display: flex; align-items: center; justify-content: center; }
         .scroll-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
         .scroll-to-top:hover { background-color: #1a1a1a; transform: translateY(-5px); }
+        .scroll-to-top:hover { background-color: #1a1a1a; transform: translateY(-5px); }
+
+/* Büyük Ekran İletişim Düzenlemesi (27 inç vs. için) */
+       @media (min-width: 1400px) {
+             .contact-modern-container {
+                     max-width: 1050px !important; /* Formu ve yazıları birbirine yaklaştırır */
+                     justify-content: center !important; /* Tüm içeriği yatayda tam ortaya hizalar */
+                     gap: 80px !important; /* İki sütun arasındaki esneme boşluğunu dengeler */
+    }
+}
+
+/* =========================================================
+   10. MOBİL UYARLAMA
+   ========================================================= */
+
+@media (max-width: 900px) {
         /* =========================================================
            10. MOBİL UYARLAMA
            ========================================================= */
+        
         @media (max-width: 900px) {
             .hero h1 { font-size: 3rem; }
             .contact-info-col h2 { font-size: 2.8rem; }
@@ -496,16 +513,19 @@ background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,25
       </div>
     </div>
 
-    <div class="contact-form-col">
+  <div class="contact-form-col">
       <form id="apartForm" action="#" method="POST">
+        
         <div class="form-group">
           <label for="adSoyad">Ad Soyad *</label>
-          <input type="text" id="adSoyad" name="Ad_Soyad" class="form-control" placeholder="Adınız ve soyadınız" required>
+          <input type="text" id="adSoyad" name="Ad_Soyad" class="form-control" placeholder="Adınız ve soyadınız" required autocomplete="name">
         </div>
+        
         <div class="form-group">
           <label for="telefon">Telefon</label>
-          <input type="tel" id="telefon" name="Telefon" class="form-control" placeholder="05XX XXX XX XX" pattern="05\d{2} \d{3} \d{2} \d{2}">
+          <input type="tel" id="telefon" name="Telefon" class="form-control" placeholder="05XX XXX XX XX" pattern="05\d{2} \d{3} \d{2} \d{2}" autocomplete="tel">
         </div>
+        
         <div class="form-group">
           <label for="odaTipi">Oda Tipi</label>
           <select id="odaTipi" name="Oda_Tipi" class="form-control">
