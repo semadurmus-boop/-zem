@@ -857,5 +857,9 @@ document.addEventListener("DOMContentLoaded", function() {
     lazyImages.forEach(img => imageObserver.observe(img));
 });
 </script>
+<!-- TÜM SCRIPTLERİ BURADA DEFER YAPACAĞIZ -->
+<script defer>
+  // Eğer form veya başka bir scriptin varsa onları buraya taşıyabilirsin.
+  // Önemli olan tüm <script> etiketlerinin içine 'defer' eklemek.
 </body>
 </html>
